@@ -97,7 +97,7 @@ div#jp-relatedposts h3.jp-relatedposts-headline {
   vertical-align: top
 }
 
-.widget_wpcom_social_media_icons_widget li a:before {
+.widget_bgcom_social_media_icons_widget li a:before {
   font-size: 32px;
   margin-right: .21875em
 }
@@ -121,37 +121,37 @@ div#jp-relatedposts h3.jp-relatedposts-headline {
   margin: 0 0 20px
 }
 
-.wpcom-reblog-snapshot .reblog-from img {
+.bgcom-reblog-snapshot .reblog-from img {
   margin: 0 .75em 0 0;
   padding: 0;
   border: 0
 }
 
-.wpcom-reblog-snapshot .reblogger-note img.avatar {
+.bgcom-reblog-snapshot .reblogger-note img.avatar {
   float: left;
   padding: 0;
   border: 0;
   margin: 0 .5em 0 0
 }
 
-.wpcom-reblog-snapshot {
+.bgcom-reblog-snapshot {
   margin-bottom: 1em
 }
 
-.wpcom-reblog-snapshot p.reblog-from {
+.bgcom-reblog-snapshot p.reblog-from {
   margin: 0 0 1em
 }
 
-.wpcom-reblog-snapshot p.reblogger-headline {
+.bgcom-reblog-snapshot p.reblogger-headline {
   line-height: 32px;
   margin: 0 0 1em
 }
 
-.wpcom-reblog-snapshot .reblogged-content {
+.bgcom-reblog-snapshot .reblogged-content {
   margin: 0 0 1em
 }
 
-.reblog-post .wpcom-enhanced-excerpt-content {
+.reblog-post .bgcom-enhanced-excerpt-content {
   border-left: 3px solid #eee;
   padding-left: 15px
 }
@@ -183,26 +183,26 @@ div#jp-relatedposts h3.jp-relatedposts-headline {
   border: 0
 }
 
-.reblog-post .wpcom-enhanced-excerpt {
+.reblog-post .bgcom-enhanced-excerpt {
   clear: both
 }
 
-.reblog-post .wpcom-enhanced-excerpt address,
-.reblog-post .wpcom-enhanced-excerpt li,
-.reblog-post .wpcom-enhanced-excerpt h1,
-.reblog-post .wpcom-enhanced-excerpt h2,
-.reblog-post .wpcom-enhanced-excerpt h3,
-.reblog-post .wpcom-enhanced-excerpt h4,
-.reblog-post .wpcom-enhanced-excerpt h5,
-.reblog-post .wpcom-enhanced-excerpt h6,
-.reblog-post .wpcom-enhanced-excerpt p {
+.reblog-post .bgcom-enhanced-excerpt address,
+.reblog-post .bgcom-enhanced-excerpt li,
+.reblog-post .bgcom-enhanced-excerpt h1,
+.reblog-post .bgcom-enhanced-excerpt h2,
+.reblog-post .bgcom-enhanced-excerpt h3,
+.reblog-post .bgcom-enhanced-excerpt h4,
+.reblog-post .bgcom-enhanced-excerpt h5,
+.reblog-post .bgcom-enhanced-excerpt h6,
+.reblog-post .bgcom-enhanced-excerpt p {
   font-size: 100% !important
 }
 
-.reblog-post .wpcom-enhanced-excerpt blockquote,
-.reblog-post .wpcom-enhanced-excerpt pre,
-.reblog-post .wpcom-enhanced-excerpt code,
-.reblog-post .wpcom-enhanced-excerpt q {
+.reblog-post .bgcom-enhanced-excerpt blockquote,
+.reblog-post .bgcom-enhanced-excerpt pre,
+.reblog-post .bgcom-enhanced-excerpt code,
+.reblog-post .bgcom-enhanced-excerpt q {
   font-size: 98% !important
 }
 
@@ -223,28 +223,28 @@ div#jp-relatedposts h3.jp-relatedposts-headline {
   color: #668eaa
 }
 
-.wpcom-reblog-snapshot .reblog-post {
+.bgcom-reblog-snapshot .reblog-post {
   box-shadow: 0 0 0 1px rgba(46, 68, 83, .1) inset, 0 1px 1px rgba(46, 68, 83, .05);
   border-radius: 4px;
   padding: 24px
 }
 
-.wpcom-reblog-snapshot .reblogger-note {
+.bgcom-reblog-snapshot .reblogger-note {
   margin: 0 0 1em;
   overflow: hidden
 }
 
-.wpcom-reblog-snapshot p.reblogger-headline {
+.bgcom-reblog-snapshot p.reblogger-headline {
   line-height: 32px;
   margin: 0 0 1em
 }
 
-.wpcom-reblog-snapshot .reblogger-note-content {
+.bgcom-reblog-snapshot .reblogger-note-content {
   margin: 0;
   padding: 0
 }
 
-body .wpcom-reblog-snapshot .reblogger-note-content blockquote {
+body .bgcom-reblog-snapshot .reblogger-note-content blockquote {
   font-style: normal;
   font-weight: 400;
   font-size: 1em;
@@ -254,6 +254,6 @@ body .wpcom-reblog-snapshot .reblogger-note-content blockquote {
   border: none
 }
 
-.wpcom-reblog-snapshot .reblogger-note-content blockquote p:last-child {
+.bgcom-reblog-snapshot .reblogger-note-content blockquote p:last-child {
   margin-bottom: 0
 }

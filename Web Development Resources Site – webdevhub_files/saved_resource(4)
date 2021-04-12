@@ -79,7 +79,7 @@ wpFollowButton = {
  	 			}
 			}
 
-			$.post( domain + 'wp-admin/admin-ajax.php', {
+			$.post( domain + 'bg-admin/admin-ajax.php', {
  	 			'action': action,
  	 			'_wpnonce': nonce,
  	 			'blog_id': blog_id,

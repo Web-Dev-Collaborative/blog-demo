@@ -8,25 +8,25 @@
 <title>Projects &#8211; Web Development Resources Site</title>
 <meta name='robots' content='max-image-preview:large' />
 <!-- Async WordPress.com Remote Login -->
-<script id="wpcom_remote_login_js">
-var wpcom_remote_login_extra_auth = '';
-function wpcom_remote_login_remove_dom_node_id( element_id ) {
+<script id="bgcom_remote_login_js">
+var bgcom_remote_login_extra_auth = '';
+function bgcom_remote_login_remove_dom_node_id( element_id ) {
 	var dom_node = document.getElementById( element_id );
 	if ( dom_node ) { dom_node.parentNode.removeChild( dom_node ); }
 }
-function wpcom_remote_login_remove_dom_node_classes( class_name ) {
+function bgcom_remote_login_remove_dom_node_classes( class_name ) {
 	var dom_nodes = document.querySelectorAll( '.' + class_name );
 	for ( var i = 0; i < dom_nodes.length; i++ ) {
 		dom_nodes[ i ].parentNode.removeChild( dom_nodes[ i ] );
 	}
 }
-function wpcom_remote_login_final_cleanup() {
-	wpcom_remote_login_remove_dom_node_classes( "wpcom_remote_login_msg" );
-	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_key" );
-	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_validate" );
-	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_js" );
-	wpcom_remote_login_remove_dom_node_id( "wpcom_request_access_iframe" );
-	wpcom_remote_login_remove_dom_node_id( "wpcom_request_access_styles" );
+function bgcom_remote_login_final_cleanup() {
+	bgcom_remote_login_remove_dom_node_classes( "bgcom_remote_login_msg" );
+	bgcom_remote_login_remove_dom_node_id( "bgcom_remote_login_key" );
+	bgcom_remote_login_remove_dom_node_id( "bgcom_remote_login_validate" );
+	bgcom_remote_login_remove_dom_node_id( "bgcom_remote_login_js" );
+	bgcom_remote_login_remove_dom_node_id( "bgcom_request_access_iframe" );
+	bgcom_remote_login_remove_dom_node_id( "bgcom_request_access_styles" );
 }
 // Watch for messages back from the remote login
 window.addEventListener( "message", function( e ) {
@@ -35,23 +35,23 @@ window.addEventListener( "message", function( e ) {
 		try {
 			data = JSON.parse( e.data );
 		} catch( e ) {
-			wpcom_remote_login_final_cleanup();
+			bgcom_remote_login_final_cleanup();
 			return;
 		}
 		if ( data.msg === 'LOGIN' ) {
 			// Clean up the login check iframe
-			wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_key" );
+			bgcom_remote_login_remove_dom_node_id( "bgcom_remote_login_key" );
 			var id_regex = new RegExp( /^[0-9]+$/ );
 			var token_regex = new RegExp( /^.*|.*|.*$/ );
 			if (
 				token_regex.test( data.token )
-				&& id_regex.test( data.wpcomid )
+				&& id_regex.test( data.bgcomid )
 			) {
 				// We have everything we need to ask for a login
 				var script = document.createElement( "script" );
-				script.setAttribute( "id", "wpcom_remote_login_validate" );
-				script.src='remote-login_wpcom_remote_login_validate.html'
-					+ '&wpcomid=' + data.wpcomid
+				script.setAttribute( "id", "bgcom_remote_login_validate" );
+				script.src='remote-login_bgcom_remote_login_validate.html'
+					+ '&bgcomid=' + data.bgcomid
 					+ '&token=' + encodeURIComponent( data.token )
 					+ '&host=' + window.location.protocol
 						+ '//' + window.location.hostname;
@@ -71,7 +71,7 @@ window.addEventListener( "message", function( e ) {
 			style_zap.type = 'text/css';
 			style_zap.appendChild( document.createTextNode( css_zap ) );
 			document.body.appendChild( style_zap );
-			var e = document.getElementById( 'wpcom_request_access_iframe' );
+			var e = document.getElementById( 'bgcom_request_access_iframe' );
 			e.parentNode.removeChild( e );
 			document.cookie = 'wordpress_com_login_access=denied; path=/; max-age=31536000';
 			return;
@@ -80,7 +80,7 @@ window.addEventListener( "message", function( e ) {
 		if ( data.msg === 'REQUEST_ACCESS' ) {
 			console.log( 'request access: safari' );
 			// Check ITP iframe enable/disable knob
-			if ( wpcom_remote_login_extra_auth !== 'safari_itp_iframe' ) {
+			if ( bgcom_remote_login_extra_auth !== 'safari_itp_iframe' ) {
 				return;
 			}
 			// If we are in a "private window" there is no ITP.
@@ -95,20 +95,20 @@ window.addEventListener( "message", function( e ) {
 				return;
 			}
 			var iframe = document.createElement( 'iframe' );
-			iframe.id = 'wpcom_request_access_iframe';
+			iframe.id = 'bgcom_request_access_iframe';
 			iframe.setAttribute( 'scrolling', 'no' );
 			iframe.setAttribute( 'sandbox', 'allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-top-navigation-by-user-activation' );
-			iframe.src = 'https://r-login.wordpress.com/remote-login.php?wpcom_remote_login=request_access&origin=' + encodeURIComponent( data.origin ) + '&wpcomid=' + encodeURIComponent( data.wpcomid );
-			var css = 'html { -webkit-transition: margin-top 1s; transition: margin-top 1s; } /* 9001 */ html { margin-top: 46px !important; } * html body { margin-top: 46px !important; } @media screen and ( max-width: 660px ) { html { margin-top: 71px !important; } * html body { margin-top: 71px !important; } #wpcom_request_access_iframe { display: block; height: 71px !important; } } #wpcom_request_access_iframe { border: 0px; height: 46px; position: fixed; top: 0; left: 0; width: 100%; min-width: 100%; z-index: 99999; background: #23282d; } ';
+			iframe.src = 'https://r-login.wordpress.com/remote-login.php?bgcom_remote_login=request_access&origin=' + encodeURIComponent( data.origin ) + '&bgcomid=' + encodeURIComponent( data.bgcomid );
+			var css = 'html { -webkit-transition: margin-top 1s; transition: margin-top 1s; } /* 9001 */ html { margin-top: 46px !important; } * html body { margin-top: 46px !important; } @media screen and ( max-width: 660px ) { html { margin-top: 71px !important; } * html body { margin-top: 71px !important; } #bgcom_request_access_iframe { display: block; height: 71px !important; } } #bgcom_request_access_iframe { border: 0px; height: 46px; position: fixed; top: 0; left: 0; width: 100%; min-width: 100%; z-index: 99999; background: #23282d; } ';
 			var style = document.createElement( 'style' );
 			style.type = 'text/css';
-			style.id = 'wpcom_request_access_styles';
+			style.id = 'bgcom_request_access_styles';
 			style.appendChild( document.createTextNode( css ) );
 			document.body.appendChild( style );
 			document.body.appendChild( iframe );
 		}
 		if ( data.msg === 'DONE' ) {
-			wpcom_remote_login_final_cleanup();
+			bgcom_remote_login_final_cleanup();
 		}
 	}
 }, false );
@@ -118,11 +118,11 @@ window.addEventListener( "DOMContentLoaded", function( e ) {
 	var iframe = document.createElement( "iframe" );
 	iframe.style.display = "none";
 	iframe.setAttribute( "scrolling", "no" );
-	iframe.setAttribute( "id", "wpcom_remote_login_key" );
+	iframe.setAttribute( "id", "bgcom_remote_login_key" );
 	iframe.src = "https://r-login.wordpress.com/remote-login.php"
-		+ "?wpcom_remote_login=key"
+		+ "?bgcom_remote_login=key"
 		+ "&origin=aHR0cHM6Ly93ZWItZGV2LWh1Yi5jb20%3D"
-		+ "&wpcomid=190652711"
+		+ "&bgcomid=190652711"
 		+ "&time=1618256904";
 	document.body.appendChild( iframe );
 }, false );
@@ -149,11 +149,11 @@ window.addEventListener( "DOMContentLoaded", function( e ) {
 		/* ]]> */
 	</script>
 			<script type="text/javascript">
-			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"wp-includes/js/wp-emoji-release.min.js"}};
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/bgcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/bgcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"wp-includes/js/wp-emoji-release.min.js"}};
 			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([55357,56424,8205,55356,57212],[55357,56424,8203,55356,57212])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
 		</script>
 		<style type="text/css">
-img.wp-smiley,
+img.bg-smiley,
 img.emoji {
 	display: inline !important;
 	border: none !important;
@@ -179,8 +179,8 @@ img.emoji {
 @import url('https://fonts.googleapis.com/css?family=Fira Sans:regular,bold,italic,bolditalic|Playfair Display:regular,bold,italic,bolditalic|');:root { --font-headings: Playfair Display; --font-base: Fira Sans; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
 </style>
 <link rel='stylesheet' id='all-css-6-1' href='css/8vko0gb5oktn6kflxxdgmejrqbvyemzvhiclnzy2i9lfdfr_cssminify_yes.css' type='text/css' media='all' />
-<script id='wpcom-actionbar-placeholder-js-extra'>
-var actionbardata = {"siteID":"190652711","siteName":"Web Development Resources Site","siteURL":"https:\/\/web-dev-hub.com","icon":"<img alt='' src='https:\/\/webdevhubcom.files.wordpress.com\/2021\/03\/image.jpg?w=50' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/escutcheon","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fweb-dev-hub.com%2Fabout-me%2F&signup_flow=account&domain=web-dev-hub.com","themeURL":"https:\/\/wordpress.com\/theme\/escutcheon\/","xhrURL":"index.html","nonce":"210a37f09a","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"9b8f8b2e6d\" \/>","referer":"https:\/\/web-dev-hub.com\/about-me\/","canFollow":"1","feedID":"115349218","statusMessage":"","customizeLink":"https:\/\/webdevhubcom.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fwebdevhubcom.wordpress.com%2Fabout-me%2F","postID":"108","shortlink":"https:\/\/wp.me\/PcTXtJ-1K","canEditPost":"","editLink":"https:\/\/wordpress.com\/page\/web-dev-hub.com\/108","statsLink":"https:\/\/wordpress.com\/stats\/post\/108\/web-dev-hub.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Escutcheon","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fweb-dev-hub.com%2Fabout-me%2F&signup_flow=account&domain=web-dev-hub.com\">Log in now.<\/a>","stats":"Stats"}};
+<script id='bgcom-actionbar-placeholder-js-extra'>
+var actionbardata = {"siteID":"190652711","siteName":"Web Development Resources Site","siteURL":"https:\/\/web-dev-hub.com","icon":"<img alt='' src='https:\/\/webdevhubcom.files.wordpress.com\/2021\/03\/image.jpg?w=50' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/escutcheon","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fweb-dev-hub.com%2Fabout-me%2F&signup_flow=account&domain=web-dev-hub.com","themeURL":"https:\/\/wordpress.com\/theme\/escutcheon\/","xhrURL":"index.html","nonce":"210a37f09a","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"9b8f8b2e6d\" \/>","referer":"https:\/\/web-dev-hub.com\/about-me\/","canFollow":"1","feedID":"115349218","statusMessage":"","customizeLink":"https:\/\/webdevhubcom.wordpress.com\/bg-admin\/customize.php?url=https%3A%2F%2Fwebdevhubcom.wordpress.com%2Fabout-me%2F","postID":"108","shortlink":"https:\/\/wp.me\/PcTXtJ-1K","canEditPost":"","editLink":"https:\/\/wordpress.com\/page\/web-dev-hub.com\/108","statsLink":"https:\/\/wordpress.com\/stats\/post\/108\/web-dev-hub.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Escutcheon","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fweb-dev-hub.com%2Fabout-me%2F&signup_flow=account&domain=web-dev-hub.com\">Log in now.<\/a>","stats":"Stats"}};
 </script>
 <script type='text/javascript' src='js/lcqgm0ax1a_jacitfrzlndkv7w3rvqotnoib5i4bp0clxj3fpmh2qlue6ttof4hdhpvbdeewvhovg7a__.js'></script>
 <script type='text/javascript'>
@@ -193,7 +193,7 @@ var actionbardata = {"siteID":"190652711","siteName":"Web Development Resources 
 <meta name="generator" content="WordPress.com" />
 <link rel="canonical" href="index.html" />
 <link rel='shortlink' href='https://wp.me/PcTXtJ-1K' />
-<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fweb-dev-hub.com%2Fabout-me%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fweb-dev-hub.com%2Fabout-me%2F&amp;for=wpcom-auto-discovery" />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fweb-dev-hub.com%2Fabout-me%2F&amp;for=bgcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fweb-dev-hub.com%2Fabout-me%2F&amp;for=bgcom-auto-discovery" />
 <!-- Jetpack Open Graph Tags -->
 <meta property="og:type" content="article" />
 <meta property="og:title" content="Projects" />
@@ -383,7 +383,7 @@ var actionbardata = {"siteID":"190652711","siteName":"Web Development Resources 
 							window._tkq = window._tkq || [];
 							window._tkq.push( [
 								'recordEvent',
-								'wpcom_floc_trial_cohort',
+								'bgcom_floc_trial_cohort',
 								{
 									path: currentPath,
 									cohort_id: cohort.id,
@@ -413,7 +413,7 @@ var WPGroHo = {"my_hash":""};
 					WPGroHo.syncProfileData( hash, id );
 				};
 				Gravatar.my_hash = WPGroHo.my_hash;
-				Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+				Gravatar.init( 'body', '#bg-admin-bar-my-account' );
 			}
 			if ( document.readyState !== 'loading' ) {
 				init();
@@ -533,7 +533,7 @@ window.addEventListener( "load", function( event ) {
 			<div class="jp-carousel-close-hint"><span>&times;</span></div>
 		</div>
 	<script type="text/javascript">
-		window.WPCOM_sharing_counts = {"https:\/\/web-dev-hub.com\/about-me\/":108};
+		window.bgcom_sharing_counts = {"https:\/\/web-dev-hub.com\/about-me\/":108};
 	</script>
 				<link rel='stylesheet' id='all-css-0-2' href='wp-content/mu-plugins/responsive-videos/responsive-videos.css' type='text/css' media='all' />
 <link rel='stylesheet' id='jetpack-gist-styling-css'  href='assets/gist-embed-128c4378b91120802003e5c0b2ac3a41.css' media='all' />
@@ -620,7 +620,7 @@ wp.date.setSettings( {"l10n":{"locale":"en","months":["January","February","Marc
 var Jetpack_Block_Assets_Base_Url = {"url":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/jetpack\/_inc\/blocks\/"};
 </script>
 <script id='jetpack-carousel-js-extra'>
-var jetpackCarouselStrings = {"widths":[370,700,1000,1200,1400,2000],"is_logged_in":"","lang":"en","ajaxurl":"index.html","nonce":"5faeae3d71","display_exif":"1","display_comments":"1","display_geo":"1","single_image_gallery":"1","single_image_gallery_media_file":"","background_color":"black","comment":"Comment","post_comment":"Post Comment","write_comment":"Write a Comment...","loading_comments":"Loading Comments...","download_original":"View full size <span class=\"photo-size\">{0}<span class=\"photo-size-times\">\u00d7<\/span>{1}<\/span>","no_comment_text":"Please be sure to submit some text with your comment.","no_comment_email":"Please provide an email address to comment.","no_comment_author":"Please provide your name to comment.","comment_post_error":"Sorry, but there was an error posting your comment. Please try again later.","comment_approved":"Your comment was approved.","comment_unapproved":"Your comment is in moderation.","camera":"Camera","aperture":"Aperture","shutter_speed":"Shutter Speed","focal_length":"Focal Length","copyright":"Copyright","comment_registration":"0","require_name_email":"1","login_url":"https:\/\/webdevhubcom.wordpress.com\/wp-login.php?redirect_to=https%3A%2F%2Fweb-dev-hub.com%2Fabout-me%2F","blog_id":"190652711","meta_data":["camera","aperture","shutter_speed","focal_length","copyright"],"reblog":"Reblog","reblogged":"Reblogged","reblog_add_thoughts":"Add your thoughts here... (optional)","reblogging":"Reblogging...","post_reblog":"Post Reblog","stats_query_args":"blog=190652711&v=wpcom&tz=-4&user_id=0&subd=webdevhubcom","is_public":"1","reblog_enabled":""};
+var jetpackCarouselStrings = {"widths":[370,700,1000,1200,1400,2000],"is_logged_in":"","lang":"en","ajaxurl":"index.html","nonce":"5faeae3d71","display_exif":"1","display_comments":"1","display_geo":"1","single_image_gallery":"1","single_image_gallery_media_file":"","background_color":"black","comment":"Comment","post_comment":"Post Comment","write_comment":"Write a Comment...","loading_comments":"Loading Comments...","download_original":"View full size <span class=\"photo-size\">{0}<span class=\"photo-size-times\">\u00d7<\/span>{1}<\/span>","no_comment_text":"Please be sure to submit some text with your comment.","no_comment_email":"Please provide an email address to comment.","no_comment_author":"Please provide your name to comment.","comment_post_error":"Sorry, but there was an error posting your comment. Please try again later.","comment_approved":"Your comment was approved.","comment_unapproved":"Your comment is in moderation.","camera":"Camera","aperture":"Aperture","shutter_speed":"Shutter Speed","focal_length":"Focal Length","copyright":"Copyright","comment_registration":"0","require_name_email":"1","login_url":"https:\/\/webdevhubcom.wordpress.com\/wp-login.php?redirect_to=https%3A%2F%2Fweb-dev-hub.com%2Fabout-me%2F","blog_id":"190652711","meta_data":["camera","aperture","shutter_speed","focal_length","copyright"],"reblog":"Reblog","reblogged":"Reblogged","reblog_add_thoughts":"Add your thoughts here... (optional)","reblogging":"Reblogging...","post_reblog":"Post Reblog","stats_query_args":"blog=190652711&v=bgcom&tz=-4&user_id=0&subd=webdevhubcom","is_public":"1","reblog_enabled":""};
 </script>
 <script id='sharing-js-js-extra'>
 var sharing_js_options = {"lang":"en","counts":"1","is_stats_active":"1"};
@@ -651,7 +651,7 @@ var windowOpen;
 						if ( typeof windowOpen !== 'undefined' ) {
 							windowOpen.close();
 						}
-						windowOpen = window.open( el.getAttribute( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+						windowOpen = window.open( el.getAttribute( 'href' ), 'bgcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
 						return false;
 					}
 				} );
@@ -680,7 +680,7 @@ var windowOpen;
 						if ( typeof windowOpen !== 'undefined' ) {
 							windowOpen.close();
 						}
-						windowOpen = window.open( el.getAttribute( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+						windowOpen = window.open( el.getAttribute( 'href' ), 'bgcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
 						return false;
 					}
 				} );
@@ -709,23 +709,23 @@ try{
 _tkq = window._tkq || [];
 _stq = window._stq || [];
 _tkq.push(['storeContext', {'blog_id':'190652711','blog_tz':'-4','user_lang':'en','blog_lang':'en','user_id':'0'}]);
-_stq.push(['view', {'blog':'190652711','v':'wpcom','tz':'-4','user_id':'0','post':'108','subd':'webdevhubcom'}]);
+_stq.push(['view', {'blog':'190652711','v':'bgcom','tz':'-4','user_id':'0','post':'108','subd':'webdevhubcom'}]);
 _stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1mJVY3bm9aR3VCbS9mWm1pRyZuJS1LX1t5NE84SWQsc2J8a3kvOS9ufHlFc2gmTk9WWlF2Lit2cCVUNnFGN2FKMVkuU2cxa3g1SThLSFg/RDFXLXgxRS0rOFdDZXVbYytfRmZJdDRNP04wMjJqK28sUnNPTG9nZndGV0t6VFNBW1t3bHUxT1E3LGMrOWhqZTEmNlVWdSZnUDklOHFxPU4xZm13R0omUWxTT043dV9idSYvQS9ZJS5VWm92Ty9fbGQtMlljbFtvdjQ3a2sxQU5TM1RUWmR0eDZwQ25MRGIxWHpMelVKcG1rX2RRTU5acywrcVtqWTVXP2ZMMQ=='}]);
 _stq.push([ 'clickTrackerInit', '190652711', '108' ]);
 	</script>
 <noscript><img src="b.gif" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
 <script defer id="bilmur" data-provider="wordpress.com" data-service="simple" src="wp-content/js/bilmur.min.js"></script><script>
-if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
-	wpcom_mobile_user_agent_info.init();
+if ( 'object' === typeof bgcom_mobile_user_agent_info ) {
+	bgcom_mobile_user_agent_info.init();
 	var mobileStatsQueryString = "";
-	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
-		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
-	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
-		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
-	if( wpcom_mobile_user_agent_info.isIPad() )
+	if( false !== bgcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + bgcom_mobile_user_agent_info.matchedPlatformName;
+	if( false !== bgcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + bgcom_mobile_user_agent_info.matchedUserAgentName;
+	if( bgcom_mobile_user_agent_info.isIPad() )
 		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
 	if( "" != mobileStatsQueryString ) {
-		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=bgcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
 	}
 }
 </script>

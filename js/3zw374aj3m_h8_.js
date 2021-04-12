@@ -1198,8 +1198,8 @@ function JetpackLikesMessageListener( event, message ) {
         }, window.frames[ 'likes-master' ] );
 
         stylesData.adminBarStyles = {
-          background: jQuery( '#wpadminbar .quicklinks li#wp-admin-bar-wpl-like > a' ).css( 'background' ),
-          isRtl: ( 'rtl' === jQuery( '#wpadminbar' ).css( 'direction' ) )
+          background: jQuery( '#bgadminbar .quicklinks li#bg-admin-bar-wpl-like > a' ).css( 'background' ),
+          isRtl: ( 'rtl' === jQuery( '#bgadminbar' ).css( 'direction' ) )
         };
       }
 
@@ -1211,7 +1211,7 @@ function JetpackLikesMessageListener( event, message ) {
       }
 
       if ( !window.addEventListener ) {
-        jQuery( '#wp-admin-bar-admin-bar-likes-widget' ).hide();
+        jQuery( '#bg-admin-bar-admin-bar-likes-widget' ).hide();
       }
 
       stylesData.textStyles = {
@@ -2025,7 +2025,7 @@ jQuery( function () {
   var handle_link_action = function ( $link, action, comment_id, callback ) {
     var nonce = $link.attr( 'href' ).split( '_wpnonce=' )[ 1 ];
 
-    $.post( '/wp-admin/admin-ajax.php', {
+    $.post( '/bg-admin/admin-ajax.php', {
       'action': action,
       '_wpnonce': nonce,
       'like_comment': comment_id,
@@ -2222,7 +2222,7 @@ jQuery( function () {
       var top = offset.top - this.$el.height() + 5;
 
       // Check if the overlay would appear off the screen.
-      if ( top < ( $( window ).scrollTop() + ( $( '#wpadminbar' ).height() || 0 ) ) ) {
+      if ( top < ( $( window ).scrollTop() + ( $( '#bgadminbar' ).height() || 0 ) ) ) {
         // We'll display the overlay beneath the link instead.
         top = offset.top + $link.height();
         // Instead of using the down arrow icon, use an up arrow.
@@ -2816,60 +2816,60 @@ jQuery( function () {
 
   var linksTracksEvents = {
     // top level items
-    'wp-admin-bar-blog': 'my_sites',
-    'wp-admin-bar-newdash': 'reader',
-    'wp-admin-bar-ab-new-post': 'write_button',
-    'wp-admin-bar-my-account': 'my_account',
-    'wp-admin-bar-notes': 'notifications',
+    'bg-admin-bar-blog': 'my_sites',
+    'bg-admin-bar-newdash': 'reader',
+    'bg-admin-bar-ab-new-post': 'write_button',
+    'bg-admin-bar-my-account': 'my_account',
+    'bg-admin-bar-notes': 'notifications',
     // my sites - top items
-    'wp-admin-bar-switch-site': 'my_sites_switch_site',
-    'wp-admin-bar-blog-info': 'my_sites_site_info',
-    'wp-admin-bar-site-view': 'my_sites_view_site',
-    'wp-admin-bar-blog-stats': 'my_sites_site_stats',
-    'wp-admin-bar-plan': 'my_sites_plan',
-    'wp-admin-bar-plan-badge': 'my_sites_plan_badge',
+    'bg-admin-bar-switch-site': 'my_sites_switch_site',
+    'bg-admin-bar-blog-info': 'my_sites_site_info',
+    'bg-admin-bar-site-view': 'my_sites_view_site',
+    'bg-admin-bar-blog-stats': 'my_sites_site_stats',
+    'bg-admin-bar-plan': 'my_sites_plan',
+    'bg-admin-bar-plan-badge': 'my_sites_plan_badge',
     // my sites - manage
-    'wp-admin-bar-edit-page': 'my_sites_manage_site_pages',
-    'wp-admin-bar-new-page-badge': 'my_sites_manage_add_page',
-    'wp-admin-bar-edit-post': 'my_sites_manage_blog_posts',
-    'wp-admin-bar-new-post-badge': 'my_sites_manage_add_post',
-    'wp-admin-bar-edit-attachment': 'my_sites_manage_media',
-    'wp-admin-bar-new-attachment-badge': 'my_sites_manage_add_media',
-    'wp-admin-bar-comments': 'my_sites_manage_comments',
-    'wp-admin-bar-edit-jetpack-testimonial': 'my_sites_manage_testimonials',
-    'wp-admin-bar-new-jetpack-testimonial': 'my_sites_manage_add_testimonial',
-    'wp-admin-bar-edit-jetpack-portfolio': 'my_sites_manage_portfolio',
-    'wp-admin-bar-new-jetpack-portfolio': 'my_sites_manage_add_portfolio',
+    'bg-admin-bar-edit-page': 'my_sites_manage_site_pages',
+    'bg-admin-bar-new-page-badge': 'my_sites_manage_add_page',
+    'bg-admin-bar-edit-post': 'my_sites_manage_blog_posts',
+    'bg-admin-bar-new-post-badge': 'my_sites_manage_add_post',
+    'bg-admin-bar-edit-attachment': 'my_sites_manage_media',
+    'bg-admin-bar-new-attachment-badge': 'my_sites_manage_add_media',
+    'bg-admin-bar-comments': 'my_sites_manage_comments',
+    'bg-admin-bar-edit-jetpack-testimonial': 'my_sites_manage_testimonials',
+    'bg-admin-bar-new-jetpack-testimonial': 'my_sites_manage_add_testimonial',
+    'bg-admin-bar-edit-jetpack-portfolio': 'my_sites_manage_portfolio',
+    'bg-admin-bar-new-jetpack-portfolio': 'my_sites_manage_add_portfolio',
     // my sites - personalize
-    'wp-admin-bar-themes': 'my_sites_personalize_themes',
-    'wp-admin-bar-cmz': 'my_sites_personalize_themes_customize',
+    'bg-admin-bar-themes': 'my_sites_personalize_themes',
+    'bg-admin-bar-cmz': 'my_sites_personalize_themes_customize',
     // my sites - configure
-    'wp-admin-bar-sharing': 'my_sites_configure_sharing',
-    'wp-admin-bar-people': 'my_sites_configure_people',
-    'wp-admin-bar-people-add': 'my_sites_configure_people_add_button',
-    'wp-admin-bar-plugins': 'my_sites_configure_plugins',
-    'wp-admin-bar-domains': 'my_sites_configure_domains',
-    'wp-admin-bar-domains-add': 'my_sites_configure_add_domain',
-    'wp-admin-bar-blog-settings': 'my_sites_configure_settings',
-    'wp-admin-bar-legacy-dashboard': 'my_sites_configure_wp_admin',
+    'bg-admin-bar-sharing': 'my_sites_configure_sharing',
+    'bg-admin-bar-people': 'my_sites_configure_people',
+    'bg-admin-bar-people-add': 'my_sites_configure_people_add_button',
+    'bg-admin-bar-plugins': 'my_sites_configure_plugins',
+    'bg-admin-bar-domains': 'my_sites_configure_domains',
+    'bg-admin-bar-domains-add': 'my_sites_configure_add_domain',
+    'bg-admin-bar-blog-settings': 'my_sites_configure_settings',
+    'bg-admin-bar-legacy-dashboard': 'my_sites_configure_wp_admin',
     // reader
-    'wp-admin-bar-followed-sites': 'reader_followed_sites',
-    'wp-admin-bar-reader-followed-sites-manage': 'reader_manage_followed_sites',
-    'wp-admin-bar-discover-discover': 'reader_discover',
-    'wp-admin-bar-discover-search': 'reader_search',
-    'wp-admin-bar-my-activity-my-likes': 'reader_my_likes',
+    'bg-admin-bar-followed-sites': 'reader_followed_sites',
+    'bg-admin-bar-reader-followed-sites-manage': 'reader_manage_followed_sites',
+    'bg-admin-bar-discover-discover': 'reader_discover',
+    'bg-admin-bar-discover-search': 'reader_search',
+    'bg-admin-bar-my-activity-my-likes': 'reader_my_likes',
     // account
-    'wp-admin-bar-user-info': 'my_account_user_name',
+    'bg-admin-bar-user-info': 'my_account_user_name',
     // account - profile
-    'wp-admin-bar-my-profile': 'my_account_profile_my_profile',
-    'wp-admin-bar-account-settings': 'my_account_profile_account_settings',
-    'wp-admin-bar-billing': 'my_account_profile_manage_purchases',
-    'wp-admin-bar-security': 'my_account_profile_security',
-    'wp-admin-bar-notifications': 'my_account_profile_notifications',
+    'bg-admin-bar-my-profile': 'my_account_profile_my_profile',
+    'bg-admin-bar-account-settings': 'my_account_profile_account_settings',
+    'bg-admin-bar-billing': 'my_account_profile_manage_purchases',
+    'bg-admin-bar-security': 'my_account_profile_security',
+    'bg-admin-bar-notifications': 'my_account_profile_notifications',
     // account - special
-    'wp-admin-bar-get-apps': 'my_account_special_get_apps',
-    'wp-admin-bar-next-steps': 'my_account_special_next_steps',
-    'wp-admin-bar-help': 'my_account_special_help',
+    'bg-admin-bar-get-apps': 'my_account_special_get_apps',
+    'bg-admin-bar-next-steps': 'my_account_special_next_steps',
+    'bg-admin-bar-help': 'my_account_special_help',
   };
 
   var notesTracksEvents = {
@@ -2967,8 +2967,8 @@ jQuery( function () {
 
   function init() {
     var trackableLinkSelector = '.mb-trackable .ab-item:not(div),' +
-      '#wp-admin-bar-notes .ab-item,' +
-      '#wp-admin-bar-user-info .ab-item,' +
+      '#bg-admin-bar-notes .ab-item,' +
+      '#bg-admin-bar-user-info .ab-item,' +
       '.mb-trackable .ab-secondary';
 
     var trackableLinks = document.querySelectorAll( trackableLinkSelector );

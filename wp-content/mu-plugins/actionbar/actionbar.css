@@ -648,10 +648,10 @@ div#translator-launcher {
   bottom: 65px;
 }
 
-li#wp-admin-bar-follow,
-li#wp-admin-bar-admin-bar-likes-widget,
-li#wp-admin-bar-wpr-reblog,
-ul#wp-admin-bar-blog-secondary {
+li#bg-admin-bar-follow,
+li#bg-admin-bar-admin-bar-likes-widget,
+li#bg-admin-bar-wpr-reblog,
+ul#bg-admin-bar-blog-secondary {
   display: none !important;
 }
 

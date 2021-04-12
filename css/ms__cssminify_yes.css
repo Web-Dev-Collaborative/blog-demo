@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-img.wp-smiley {
+img.bg-smiley {
   border: none !important;
   box-shadow: none !important;
   height: 1em !important;
@@ -38,12 +38,12 @@ div.sharedaddy h3.sd-title:before {
   margin-bottom: 1em
 }
 
-#wpadminbar li#wp-admin-bar-admin-bar-likes-widget {
+#bgadminbar li#bg-admin-bar-admin-bar-likes-widget {
   width: 61px;
   overflow: hidden
 }
 
-#wpadminbar iframe.admin-bar-likes-widget {
+#bgadminbar iframe.admin-bar-likes-widget {
   width: 61px;
   height: 28px;
   min-height: 28px;
@@ -3388,9 +3388,9 @@ pre.wp-block-verse {
 }
 
 :root {
-  --wp-admin-theme-color: #007cba;
-  --wp-admin-theme-color-darker-10: #006ba1;
-  --wp-admin-theme-color-darker-20: #005a87
+  --bg-admin-theme-color: #007cba;
+  --bg-admin-theme-color-darker-10: #006ba1;
+  --bg-admin-theme-color-darker-20: #005a87
 }
 
 :root {
@@ -6161,7 +6161,7 @@ figure.has-lightbox:hover {
 }
 
 .components-button-group .components-button.is-primary {
-  box-shadow: inset 0 0 0 1px var(--wp-admin-theme-color)
+  box-shadow: inset 0 0 0 1px var(--bg-admin-theme-color)
 }
 
 [class*=wp-block-].mt-0>.has-margin {
@@ -6463,9 +6463,9 @@ figure.has-lightbox:hover {
 }
 
 :root {
-  --wp-admin-theme-color: #007cba;
-  --wp-admin-theme-color-darker-10: #006ba1;
-  --wp-admin-theme-color-darker-20: #005a87
+  --bg-admin-theme-color: #007cba;
+  --bg-admin-theme-color-darker-10: #006ba1;
+  --bg-admin-theme-color-darker-20: #005a87
 }
 
 @media (min-width:600px) {
@@ -6780,7 +6780,7 @@ figure.has-lightbox:hover {
 .editor-styles-wrapper .wp-block-media-text.is-style-card.is-selected .wp-block-media-text__media:after,
 .editor-styles-wrapper .wp-block-media-text.is-style-overlap.is-selected .wp-block-media-text__media:after,
 .editor-styles-wrapper .wp-block-media-text.is-style-outline.is-selected .wp-block-media-text__media:after {
-  background: var(--wp-admin-theme-color, #007cba);
+  background: var(--bg-admin-theme-color, #007cba);
   border: 2px solid #fff;
   border-radius: 50%;
   bottom: -7px;
@@ -14318,7 +14318,7 @@ a:active {
 }
 
 .jetpack_widget_social_icons a:hover,
-.widget_wpcom_social_media_icons_widget a:hover {
+.widget_bgcom_social_media_icons_widget a:hover {
   color: #cad9d9
 }
 
@@ -14805,9 +14805,9 @@ body.page .entry-title {
   color: #666
 }
 
-.page-content .wp-smiley,
-.entry-content .wp-smiley,
-.comment-content .wp-smiley {
+.page-content .bg-smiley,
+.entry-content .bg-smiley,
+.comment-content .bg-smiley {
   margin-top: 0;
   margin-bottom: 0;
   padding: 0;

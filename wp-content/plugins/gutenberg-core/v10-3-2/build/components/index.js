@@ -15568,8 +15568,8 @@ window.wp = window.wp || {}, window.wp.components = function ( e ) {
       }
     },
     ae = {
-      theme: "var( --wp-admin-theme-color, ".concat( oe.wordpress[ 700 ], ")" ),
-      themeDark10: "var( --wp-admin-theme-color-darker-10, ".concat( oe.medium.focus, ")" )
+      theme: "var( --bg-admin-theme-color, ".concat( oe.wordpress[ 700 ], ")" ),
+      themeDark10: "var( --bg-admin-theme-color-darker-10, ".concat( oe.medium.focus, ")" )
     },
     ie = {
       theme: ae.theme,
@@ -35905,7 +35905,7 @@ window.wp = window.wp || {}, window.wp.components = function ( e ) {
     }, r( k ) ) )
   }
   var Fx = Object( N.b )( "box-shadow:0 0 0 transparent;transition:box-shadow 0.1s linear;border-radius:", Tx( "radiusBlockUi" ), ";border:", Tx( "borderWidth" ), " solid ", ue( "ui.border" ), ";", le( "transition" ), ";label:inputStyleNeutral;" ),
-    Bx = Object( N.b )( "border-color:var( --wp-admin-theme-color );box-shadow:0 0 0 calc( ", Tx( "borderWidthFocus" ), " - ", Tx( "borderWidth" ), " ) var( --wp-admin-theme-color );outline:2px solid transparent;;label:inputStyleFocus;" ),
+    Bx = Object( N.b )( "border-color:var( --bg-admin-theme-color );box-shadow:0 0 0 calc( ", Tx( "borderWidthFocus" ), " - ", Tx( "borderWidth" ), " ) var( --bg-admin-theme-color );outline:2px solid transparent;;label:inputStyleFocus;" ),
     zx = Object( N.b )( "font-family:", _t( "default.fontFamily" ), ";padding:6px 8px;", Fx, ";font-size:", _t( "mobileTextMinFontSize" ), ";line-height:normal;", "@media (min-width: ".concat( "600px", ")" ), "{font-size:", _t( "default.fontSize" ), ";line-height:normal;}&:focus{", Bx, "}&::-webkit-input-placeholder{color:", ue( "darkGray.placeholder" ), ";}&::-moz-placeholder{opacity:1;color:", ue( "darkGray.placeholder" ), ";}&:-ms-input-placeholder{color:", ue( "darkGray.placeholder" ), ";}.is-dark-theme &{&::-webkit-input-placeholder{color:", ue( "lightGray.placeholder" ), ";}&::-moz-placeholder{opacity:1;color:", ue( "lightGray.placeholder" ), ";}&:-ms-input-placeholder{color:", ue( "lightGray.placeholder" ), ";}};label:inputControl;" ),
     Hx = G( "textarea", {
       target: "ebk7yr50",

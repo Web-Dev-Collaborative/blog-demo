@@ -295,7 +295,7 @@
               for ( var e = t;
                 "BODY" !== e.nodeName; ) {
                 if ( "wpcombar" === e.id ) return !0;
-                if ( "wpadminbar" === e.id ) return !0;
+                if ( "bgadminbar" === e.id ) return !0;
                 if ( "wpadvert" === e.className ) return !0;
                 if ( e.className.indexOf( "wpcom-masterbar" ) > -1 ) return !0;
                 if ( void 0 === e.nodeName ) return !0;
